@@ -32,3 +32,4 @@ langchain-openai==0.3.6
 # for notebook conversion from .ipynb to .py files
 nbformat==5.10.4
 nbconvert==7.16.6
+youtube-transcript-api==0.6.3
