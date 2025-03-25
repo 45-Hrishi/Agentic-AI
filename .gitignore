@@ -1,2 +1,5 @@
 .env
-research
+research/
+env_agentic_ai/
+requirements2.txt
+dummy.ipynb
