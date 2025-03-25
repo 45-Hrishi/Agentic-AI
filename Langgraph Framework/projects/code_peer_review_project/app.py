@@ -41,6 +41,10 @@ def first_node(state:MessageState):
     print("------- FIRST NODE CALLING -------")
     pass
 
+def second_node(state:MessageState):
+    print("------- SECOND NODE CALLING --------")
+    pass
+
 def human_feedback(state:MessageState):
     print("-------- WAITING FOR THE HUMAN FEEDBACK ---------")
     feedback = interrupt("Please provide the feedback : ")
@@ -49,25 +53,27 @@ def human_feedback(state:MessageState):
 
 def route_traffic(state:MessageState):
     if state["binary_score"] == "yes":
-        return "second_node"
+        return "third_node"
     elif state["binary_score"] == "no":
-        return "first_node"
+        return "second_node"
 
-def second_node(state:MessageState):
-    print("------- SECOND NODE CALLING --------")
+def third_node(state:MessageState):
+    print("------- THIRD NODE CALLING --------")
     pass
 
 # NODES
 builder = StateGraph(MessageState)
 builder.add_node("first_node",first_node)
-builder.add_node("human_feedback",human_feedback)
 builder.add_node("second_node",second_node)
+builder.add_node("human_feedback",human_feedback)
+builder.add_node("third_node",third_node)
 
 # EDGES
 builder.add_edge(START,"first_node")
-builder.add_edge("first_node","human_feedback")
-builder.add_conditional_edges("human_feedback",route_traffic,{"second_node":"second_node","first_node":"first_node"})
-builder.add_edge("second_node",END)
+builder.add_edge("first_node","second_node")
+builder.add_edge("second_node","human_feedback")
+builder.add_conditional_edges("human_feedback",route_traffic,{"second_node":"second_node","third_node":"third_node"})
+builder.add_edge("third_node",END)
 
 # COMPILE
 workflow = builder.compile(checkpointer=MemorySaver())
