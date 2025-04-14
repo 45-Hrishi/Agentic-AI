@@ -19,12 +19,12 @@ langchain-core==0.3.47
 langchain-groq==0.3.1
 langchain-huggingface==0.1.2
 langchain-community==0.3.14
-langchain-google-genai==2.0.9
+langchain-google-genai==2.1.2
 langchain_chroma
 sentence-transformers
 wikipedia
 youtube_search
-langgraph==0.3.18
+langgraph
 streamlit
 pydantic==2.10.6
 langchain-anthropic==0.3.7
